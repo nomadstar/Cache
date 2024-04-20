@@ -10,11 +10,7 @@ services:
 
 # postgres minimi con contraseña suprema
   pgminimi:
-    image: postgres:alpine
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_USER: postgrevieja
-      POSTGRES_PASSWORD: postgrevieja
-      POSTGRES_DB: minimi
-    
+    image: dtbse.dockerfile
+    container_name: pgminimi
+    volumes:
+      - pgminimi:/var/lib/postgresql/data
