@@ -17,5 +17,4 @@ services:
       POSTGRES_USER: postgrevieja
       POSTGRES_PASSWORD: postgrevieja
       POSTGRES_DB: minimi
-    volumes:
-      - ./pgdata:/docker-entrypoint-initdb.d/hola.sql
+    
