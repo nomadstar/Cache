@@ -1,6 +1,15 @@
 version: '3'
 
 services:
+  cliente:
+    image: tusupercliente:latest
+    container_name: cliente
+    ports:
+      - "8080:8080"
+    networks:
+      backend:
+        ipv4_address: 172.0.3.2
+
 # Cache grande = cachos
   cachos:
     image: bitnami/redis:latest
@@ -22,6 +31,9 @@ services:
       - --dbfilename dump.rdb
       - --dir /bitnami/redis/data
       - --requirepass "supercachos"
+    networks:
+      backend:
+        ipv4_address: 172.30.3.4
 
 # postgres minimi con contraseña suprema (funciona despues de haber ejecutado 'docker build -t tusuperimagen -f dtbse.dockefile .')
   database:
@@ -29,3 +41,12 @@ services:
     container_name: pgminimi
     ports:
       - "5432:5432"
+    networks:
+            backend:
+                ipv4_address: 172.30.3.3
+
+networks:
+    backend:
+        ipam:
+            config:
+                - subnet: "172.30.3.0/16"

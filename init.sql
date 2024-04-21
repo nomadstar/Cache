@@ -1,12 +1,25 @@
-CREATE TABLE content (
-  id INT,
-  title VARCHAR(255) NOT NULL,
-  rank INT,
-  date DATE,
-  artist VARCHAR(255),
-  url VARCHAR(255),
-  region VARCHAR(255),
-  chart VARCHAR(255) NOT NULL,
-  trend VARCHAR(255) NOT NULL,
-  streams INT
-  );
+CREATE TABLE steam(
+        id INT,
+        app_id BIGINT,
+        app_name TEXT,
+        review_id BIGINT,
+        language TEXT,
+        review TEXT,
+        timestamp_created BIGINT,
+        timestamp_updated BIGINT,
+        recommended BOOLEAN,
+        votes_helpful BIGINT,
+        votes_funny BIGINT,
+        weighted_vote_score FLOAT,
+        comment_count BIGINT,
+        steam_purchase BOOLEAN,
+        received_for_free BOOLEAN,
+        written_during_early_access BOOLEAN,
+        author_steamid BIGINT,
+        author_num_games_owned BIGINT,
+        author_num_reviews BIGINT,
+        author_playtime_forever FLOAT,
+        author_playtime_last_two_weeks FLOAT,
+        author_playtime_at_review FLOAT,
+        author_last_played FLOAT
+    );
