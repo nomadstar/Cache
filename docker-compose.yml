@@ -2,14 +2,17 @@ version: '3'
 
 services:
   cliente:
-    image: tusuperclient
+    image: node:latest
     container_name: cliente
     ports:
       - "3000:3000"
+      - "9229:9229"
     networks:
       backend:
         ipv4_address: 172.0.0.2
-    command: tail -f /dev/null
+    volumes:
+      - ./client:/app
+    command: tail -f /dev/null && apt-get update && apt-get -y upgrade && npm install
 
 # Cache grande = cachos
   cachos:
