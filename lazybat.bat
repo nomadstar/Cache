@@ -9,8 +9,7 @@ cd /d "%script_dir%" || exit /b
 
 REM Funci�n para manejar errores
 :trap
-echo "Ha ocurrido un error en la l�nea !ERRORLEVEL!. Error de construcci�n de Docker. Revise los logs para m�s detalles."
-exit /b 1
+echo "Ha ocurrido un error en la linea !ERRORLEVEL!. Error de construccion de Docker. Revise los logs para mis detalles."
 
 REM Eliminar im�genes si existen
 docker image rm tusuperimagen 2>nul
@@ -22,3 +21,4 @@ docker build -t tusuperclient -f client.dockerfile . > CON
 
 REM Iniciar los contenedores
 docker compose up -d
+exit /b 1
