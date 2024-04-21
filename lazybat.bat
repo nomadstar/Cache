@@ -7,18 +7,18 @@ for %%I in ("%~dp0.") do set "script_dir=%%~fI"
 REM Cambiamos al directorio del script
 cd /d "%script_dir%" || exit /b
 
-REM Función para manejar errores
+REM Funciï¿½n para manejar errores
 :trap
-echo "Ha ocurrido un error en la línea !ERRORLEVEL!. Error de construcción de Docker. Revise los logs para más detalles."
+echo "Ha ocurrido un error en la lï¿½nea !ERRORLEVEL!. Error de construcciï¿½n de Docker. Revise los logs para mï¿½s detalles."
 exit /b 1
 
-REM Eliminar imágenes si existen
+REM Eliminar imï¿½genes si existen
 docker image rm tusuperimagen 2>nul
 docker image rm tusuperclient 2>nul
 
-REM Construir las imágenes necesarias
-docker build -t tusuperimagen -f dtbse.dockerfile .
-docker build -t tusuperclient -f client.dockerfile .
+REM Construir las imï¿½genes necesarias
+docker build -t tusuperimagen -f dtbse.dockerfile . > CON
+docker build -t tusuperclient -f client.dockerfile . > CON
 
 REM Iniciar los contenedores
 docker compose up -d
