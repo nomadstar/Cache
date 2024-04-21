@@ -1,9 +1,9 @@
 {
   "name": "cache",
   "version": "1.0.0",
-  "description": "",
+  "description": "Librería usada",
   "main": "index.js",
-  "type": "module", 
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,8 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",
+    "grpc": "^1.24.11",
     "pg": "^8.11.5",
     "redis": "^4.6.13"
-  }
+  },
+  "devDependencies": {}
 }
-
