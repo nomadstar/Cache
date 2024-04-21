@@ -1,20 +1,24 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-SET _INTERPOLATION_0=
-FOR /f "delims=" %%a in ('dirname "$0"') DO (SET "_INTERPOLATION_0=!_INTERPOLATION_0! %%a")
-cd "!_INTERPOLATION_0:~1!" || exit
-trap "echo "Ha ocurrido un error en la lÃ­nea $LINENO. Error de construcciÃ³n de Docker. Revise los logs para mÃ¡s detalles."" "ERR"
-IF SET _INTERPOLATION_1=
-FOR /f "delims=" %%a in ('docker image ls -q tusuperimagen') DO (SET "_INTERPOLATION_1=!_INTERPOLATION_1! %%a")
-[ "!_INTERPOLATION_1:~1!" (
-  docker "image" "rm" "tusuperimagen"
-)
-IF SET _INTERPOLATION_2=
-FOR /f "delims=" %%a in ('docker image ls -q tusuperclient') DO (SET "_INTERPOLATION_2=!_INTERPOLATION_2! %%a")
-[ "!_INTERPOLATION_2:~1!" (
-  docker "image" "rm" "tusuperclient"
-)
-docker "build" "-t" "tusuperimagen" "-f" "dtbse.dockerfile" "."
-docker "build" "-t" "tusuperclient" "-f" "client.dockerfile" "."
-docker "compose" "up" "-d"
+REM Obtenemos el directorio del script actual
+for %%I in ("%~dp0.") do set "script_dir=%%~fI"
+
+REM Cambiamos al directorio del script
+cd /d "%script_dir%" || exit /b
+
+REM Función para manejar errores
+:trap
+echo "Ha ocurrido un error en la línea !ERRORLEVEL!. Error de construcción de Docker. Revise los logs para más detalles."
+exit /b 1
+
+REM Eliminar imágenes si existen
+docker image rm tusuperimagen 2>nul
+docker image rm tusuperclient 2>nul
+
+REM Construir las imágenes necesarias
+docker build -t tusuperimagen -f dtbse.dockerfile .
+docker build -t tusuperclient -f client.dockerfile .
+
+REM Iniciar los contenedores
+docker compose up -d
