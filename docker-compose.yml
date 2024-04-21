@@ -12,7 +12,7 @@ services:
         ipv4_address: 172.0.0.2
     volumes:
       - ./client:/app
-    command: tail -f /dev/null && apt-get update && apt-get -y upgrade && npm install
+    command: tail -f /dev/null && apt-get update && apt-get -y upgrade && npm install && npm -y init
 
 # Cache grande = cachos
   cachos:
