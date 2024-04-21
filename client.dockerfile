@@ -1,9 +1,9 @@
-FROM node:alpine
+FROM node:latest
 
 WORKDIR /app
 
-COPY package*.json .
+COPY client/ .
 
-RUN npm install
+RUN apt-get update && apt-get -y upgrade && npm install
 
-COPY index.js .
+

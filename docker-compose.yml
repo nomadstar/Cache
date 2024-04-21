@@ -2,13 +2,14 @@ version: '3'
 
 services:
   cliente:
-    image: tusupercliente:latest
+    image: tusuperclient
     container_name: cliente
     ports:
-      - "8080:8080"
+      - "3000:3000"
     networks:
       backend:
-        ipv4_address: 172.0.3.2
+        ipv4_address: 172.0.0.2
+    command: tail -f /dev/null
 
 # Cache grande = cachos
   cachos:
@@ -33,7 +34,7 @@ services:
       - --requirepass "supercachos"
     networks:
       backend:
-        ipv4_address: 172.30.3.4
+        ipv4_address: 172.0.0.4
 
 # postgres minimi con contraseña suprema (funciona despues de haber ejecutado 'docker build -t tusuperimagen -f dtbse.dockefile .')
   database:
@@ -43,10 +44,10 @@ services:
       - "5432:5432"
     networks:
             backend:
-                ipv4_address: 172.30.3.3
+                ipv4_address: 172.0.0.3
 
 networks:
-    backend:
-        ipam:
-            config:
-                - subnet: "172.30.3.0/16"
+  backend:
+    ipam:
+      config:
+        - subnet: 172.0.0.0/16
