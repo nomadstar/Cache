@@ -1,16 +1,31 @@
 version: '3'
 
 services:
-# Cache chiquitita = cachitos 
-  cachitos:
+# Cache grande = cachos
+  cachos:
     image: bitnami/redis:latest
     container_name: cachitos
+    ports:
+      - "6379:6379"
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
+    command:
+      - redis-server
+      - --maxmemory 100mb
+      - --maxmemory-policy allkeys-lru
+      - --appendonly yes
+      - --appendfilename appendonly.aof
+      - --appendfsync everysec
+      - --save 900 1
+      - --save 300 10
+      - --save 60 10000
+      - --dbfilename dump.rdb
+      - --dir /bitnami/redis/data
+      - --requirepass "supercachos"
 
-# postgres minimi con contraseña suprema
-  pgminimi:
-    image: dtbse.dockerfile
+# postgres minimi con contraseña suprema (funciona despues de haber ejecutado 'docker build -t tusuperimagen -f dtbse.dockefile .')
+  database:
+    image: tusuperimagen:latest
     container_name: pgminimi
-    volumes:
-      - pgminimi:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"

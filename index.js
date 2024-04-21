@@ -4,8 +4,7 @@ import pg from 'pg';
 
 const { Client } = pg
 // remember JSON type -> modules
-
-
+ 
 const cachitos = createClient({ url: 'redis://redis:6379'});
 const posgresito = new Client({
     user: 'postgrevieja',
@@ -30,7 +29,7 @@ app.get('/task/:id', async(req, res) => {
     await cachitos.disconnect();    
     if(task) return res.send({origin:'cache',data: JSON.parse(task)});
     await posgresito.connect();
-    const { rows } = await posgresito.query(`SELECT * FROM tasks WHERE id = ${id}`);
+    const { rows } = await posgresito.query(`SELECT * FROM steam WHERE id = ${id}`);
     await posgresito.end();
     if(rows.length === 0) return res.send('Mommy, no encontré la tarea 😭');
     res.send('I ❤️ U!');
