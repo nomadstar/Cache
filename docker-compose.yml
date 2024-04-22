@@ -6,35 +6,26 @@ services:
     container_name: cliente
     ports:
       - "3000:3000"
-      - "9229:9229"
     networks:
       backend:
         ipv4_address: 172.0.0.2
     volumes:
       - ./client:/app
-    command: tail -f /dev/null && apt-get update && apt-get -y upgrade && npm install && npm -y init
+    working_dir: /app
+    command: bash -c "apt update && apt upgrade -y && npm init && npm update && npm i @grpc/grpc-js nodemon pg express && tail -f /dev/null"
+    tty: true
+    stdin_open: true
 
 # Cache grande = cachos
   cachos:
     image: bitnami/redis:latest
+    restart: always
     container_name: cachitos
     ports:
       - "6379:6379"
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
-    command:
-      - redis-server
-      - --maxmemory 100mb
-      - --maxmemory-policy allkeys-lru
-      - --appendonly yes
-      - --appendfilename appendonly.aof
-      - --appendfsync everysec
-      - --save 900 1
-      - --save 300 10
-      - --save 60 10000
-      - --dbfilename dump.rdb
-      - --dir /bitnami/redis/data
-      - --requirepass "supercachos"
+    command: /opt/bitnami/scripts/redis/run.sh --maxmemory 5mb --maxmemory-policy allkeys-lfu
     networks:
       backend:
         ipv4_address: 172.0.0.4
