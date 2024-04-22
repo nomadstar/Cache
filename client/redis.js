@@ -4,7 +4,8 @@ import { createClient } from 'redis';
 const cluster = createClient({
     rootNodes: [
         {
-            url: 'redis://172.0.0.4:6379',
+           host: '172.0.0.4',
+           port: 6379
         }
     ]
 });
