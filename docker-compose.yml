@@ -11,7 +11,8 @@ services:
         ipv4_address: 172.0.0.2
     volumes:
       - ./client:/app
-    command: npm start
+    working_dir: /app
+    command: bash -c "apt update && apt upgrade -y && npm init && npm update && npm i @grpc/grpc-js nodemon pg express && tail -f /dev/null"
     tty: true
     stdin_open: true
 
