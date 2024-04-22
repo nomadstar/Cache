@@ -4,8 +4,8 @@ FROM postgres:latest
 
 
 # Set environment variables for PostgreSQL
-ENV POSTGRES_USER postgrevieja
-ENV POSTGRES_PASSWORD postgrevieja
+ENV POSTGRES_USER tililin
+ENV POSTGRES_PASSWORD tililin
 ENV POSTGRES_DB minimi
 
 # Copia el archivo csv en la carpeta de origen
