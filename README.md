@@ -3,9 +3,9 @@ Librería usada:
 https://www.kaggle.com/datasets/najzeko/steam-reviews-2021
 
 Fuentes:
-https://github.com/SebastianRiquelmeM/tarea1_sistemas_distribuidos
+https://grpc.io/docs/languages/node/basics/
 
--- Si, aprendimos a hacer la tarea de otro compañero pero a nuestro modo, que es aún más engorroso.
+-- Nos basamos en esta fuente para realizar la implementación a pesar de los problemas que tuvimos
 
 Para inicializar en Unix utilice comando 'bash lazybash.sh'.
 
