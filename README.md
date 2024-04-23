@@ -1,5 +1,5 @@
 
-Librería usada:
+Dataset usado:
 https://www.kaggle.com/datasets/najzeko/steam-reviews-2021
 
 Fuentes:
