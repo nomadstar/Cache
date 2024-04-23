@@ -9,7 +9,9 @@ https://github.com/SebastianRiquelmeM/tarea1_sistemas_distribuidos
 
 Para inicializar en Unix utilice comando 'bash lazybash.sh'.
 
-
 ---
 Nota:
-No tenemos muchos problemas de como usar Reddis.
+*Tenemos muchos problemas de como usar gRPC.
+ Tenemos muchos problemas para usar reddis,
+ No terminamos, no entendimos...
+ Lo sentimos.*
