@@ -25,9 +25,6 @@ try {
   res.send(error);
 }
 
-
-
-
 app.listen(3000, () => {
   console.log('Time to make your super vieja proud!');
 });
